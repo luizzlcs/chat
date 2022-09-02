@@ -1,16 +1,55 @@
-# chat
+<h1 align="center">CHAT</h1>
 
-A new Flutter project.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+<p align="center">
+<img width="" height="270" src="assets/images/Chat_02_09_2022.gif"/>
+</p>
 
-A few resources to get you started if this is your first Flutter project:
+### » O QUE SERÁ CONSTRUÍDO:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+> LEGENDA: ✅ Implementado ⚪ Ainda não implementado
+___
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+✅ Página de Registro e login -> Validação de campos, confirmar Logar e cadastrar em um mesmo botão, ocultar campos.
+
+✅ Screen de Loadin
+
+ ⚪ Utilizando o imagePicker para pegar a imagem da galeria e da câmera;
+
+⚪ Aplicando Entendendo Stream;
+
+⚪ Registrando Imagem;
+
+⚪ Criando a página do chat;
+
+⚪ Chat Message Model;
+
+⚪ Criando Componente Message;
+
+⚪ Implementando Notification Service;
+
+⚪ Icone de notificação;
+
+⚪ Noficando a página;
+
+⚪ Instanciando Firebase APP;
+
+⚪ Habilitando Autenticação no Firebase;
+
+⚪ Firebase Storage;
+
+⚪ Salvando Mensagens do Firestore;
+
+⚪ Obtendo Mensagens do Firestore;
+
+⚪ Push Notification;
+
+⚪ Configurando Push Notification no iOS.
+
+### Autor
+
+<img alt="Luiz Carlos" title="Luiz Carlos" src="https://avatars.githubusercontent.com/u/29442285?s=96&v=4" height="100" width="100" />
+
+[![LinkedIn Badge](https://img.shields.io/badge/-LUIZ_CARLOS-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/luizzlcs/)](https://www.linkedin.com/in/luizzlcs/)
