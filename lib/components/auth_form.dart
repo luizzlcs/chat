@@ -1,8 +1,12 @@
+import 'dart:io';
+
+import 'package:chat/components/use_image_picker.dart';
 import 'package:chat/model/auth_form_data.dart';
 import 'package:flutter/material.dart';
 
 class AuthForm extends StatefulWidget {
   final void Function(AuthFormData) onSubmit;
+
   const AuthForm({Key? key, required this.onSubmit}) : super(key: key);
 
   @override
@@ -13,10 +17,28 @@ class _AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
   final _formData = AuthFormData();
 
+  void _handleImagePicker(File image) {
+    _formData.image = image;
+  }
+
+  void _showError(String msg) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(msg),
+        backgroundColor: Theme.of(context).errorColor,
+      ),
+    );
+  }
+
   void _submit() {
     final isValid = _formKey.currentState?.validate() ?? false;
+
     if (!isValid) return;
-    
+
+    if (_formData.image == null && _formData.isSignup) {
+      return _showError('imagem não selecionada!');
+    }
+
     widget.onSubmit(_formData);
   }
 
@@ -30,10 +52,15 @@ class _AuthFormState extends State<AuthForm> {
           key: _formKey,
           child: Column(
             children: [
-              SizedBox(height: 20),
+              if (_formData.isSignup)
+                UseImagePicker(
+                  onImagePicker: _handleImagePicker,
+                  
+                ),
+              const SizedBox(height: 20),
               if (_formData.isSignup)
                 TextFormField(
-                  key: ValueKey('Name'),
+                  key: const ValueKey('Name'),
                   initialValue: _formData.name,
                   onChanged: (name) => _formData.name = name,
                   decoration: const InputDecoration(
@@ -54,7 +81,7 @@ class _AuthFormState extends State<AuthForm> {
                 ),
               SizedBox(height: 15),
               TextFormField(
-                key: ValueKey('email'),
+                key: const ValueKey('email'),
                 initialValue: _formData.email,
                 onChanged: (email) => _formData.email = email,
                 decoration: const InputDecoration(
@@ -91,6 +118,7 @@ class _AuthFormState extends State<AuthForm> {
               ),
               const SizedBox(height: 12),
               ElevatedButton(
+                child: Text(_formData.isLogin ? 'Entrar' : 'Cadastrar'),
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(350, 36),
                   shadowColor: Color.fromARGB(255, 201, 83, 16),
@@ -99,7 +127,6 @@ class _AuthFormState extends State<AuthForm> {
                 onPressed: () {
                   _submit();
                 },
-                child: Text(_formData.isLogin ? 'Entrar' : 'Cadastrar'),
               ),
               TextButton(
                 child: Text(
