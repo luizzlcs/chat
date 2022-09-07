@@ -29,24 +29,34 @@ class _AlphPageState extends State<AlphPage> {
           currentFocus.unfocus();
         }
       },
-      child: Scaffold(
-        backgroundColor: Theme.of(context).primaryColor,
-        body: Stack(children: [
-          Center(
-            child: SingleChildScrollView(
-              child: AuthForm(onSubmit: _handleSubmit),
-            ),
+      child: GestureDetector(
+        onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+          }
+        },
+        child: Scaffold(
+          backgroundColor: Theme.of(context).primaryColor,
+          body: Stack(
+            children: [
+              Center(
+                child: SingleChildScrollView(
+                  child: AuthForm(onSubmit: _handleSubmit),
+                ),
+              ),
+              if (_isLoading)
+                Container(
+                  decoration: const BoxDecoration(
+                    color: Color.fromRGBO(0, 0, 0, 0.5),
+                  ),
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                )
+            ],
           ),
-          if (_isLoading)
-            Container(
-              decoration: const BoxDecoration(
-                color: Color.fromRGBO(0, 0, 0, 0.5),
-              ),
-              child: const Center(
-                child: CircularProgressIndicator(),
-              ),
-            )
-        ]),
+        ),
       ),
     );
   }
